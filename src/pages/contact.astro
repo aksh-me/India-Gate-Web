@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import ReserveForm from '../components/ReserveForm.astro';
+import { site, hours } from '../data/site';
+---
+
+<BaseLayout
+  title="Contact & Reservations | India Gate — St. John's, NL"
+  description="Find India Gate at 286 Duckworth Street in downtown St. John's. Reserve a table, get directions, see opening hours, or call (709) 753-6006 for takeout and catering."
+  reserveHref="#reserve"
+  breadcrumbs={[
+    { name: 'Home', path: '/' },
+    { name: 'Contact & Reservations', path: '/contact/' },
+  ]}
+>
+  <Nav />
+  <main id="main" class="bg-dark text-cream">
+    <section class="grid grid-cols-2 items-start gap-[72px] px-[7vw] pt-44 pb-32 max-lg:grid-cols-1">
+      <div>
+        <nav aria-label="Breadcrumb" class="mb-10 text-[12px] tracking-[1.5px] uppercase text-cream/50">
+          <a href="/" class="text-inherit no-underline transition-colors hover:text-gold">Home</a>
+          <span aria-hidden="true" class="mx-2 text-gold">·</span>
+          <span aria-current="page" class="text-cream/80">Contact</span>
+        </nav>
+        <p class="m-0 mb-4 text-[11px] font-medium tracking-[4px] uppercase text-gold">Contact &amp; Reservations</p>
+        <h1 class="m-0 mb-9 font-serif text-[clamp(40px,5.5vw,70px)] leading-[1.02] font-medium">
+          Visit us in<br />Downtown St. John's
+        </h1>
+
+        <div class="mb-9 flex flex-col gap-[26px]">
+          <div>
+            <h2 class="m-0 mb-2 text-[11px] font-normal tracking-[2px] uppercase text-gold">Address</h2>
+            <p class="m-0 text-[17px] leading-[1.6] font-light">{site.address[0]}<br />{site.address[1]}</p>
+          </div>
+          <div>
+            <h2 class="m-0 mb-2 text-[11px] font-normal tracking-[2px] uppercase text-gold">Phone — Reservations &amp; Takeout</h2>
+            <p class="m-0 text-[17px] font-light">
+              <a href={site.phoneHref} class="text-inherit no-underline transition-colors hover:text-gold">{site.phone}</a>
+            </p>
+          </div>
+          <div>
+            <h2 class="m-0 mb-2.5 text-[11px] font-normal tracking-[2px] uppercase text-gold">Hours</h2>
+            <div class="flex flex-col gap-2">
+              {
+                hours.map((h) => (
+                  <div class="flex max-w-[340px] justify-between border-b border-cream/10 pb-2 text-[15px] font-light">
+                    <span>{h.day}</span>
+                    <span class="text-cream/70">{h.time}</span>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+          <div>
+            <h2 class="m-0 mb-2 text-[11px] font-normal tracking-[2px] uppercase text-gold">Parking</h2>
+            <p class="m-0 text-[15px] leading-[1.7] font-light text-cream/80">
+              Metered street parking on Duckworth Street and nearby side streets, with paid lots a
+              short walk away.
+            </p>
+          </div>
+        </div>
+
+        <div class="relative h-[240px] overflow-hidden rounded bg-[#1a110d]">
+          <iframe
+            title="Map showing India Gate at 286 Duckworth Street, St. John's"
+            src={site.mapEmbed}
+            loading="lazy"
+            class="absolute inset-0 h-full w-full border-0 [filter:grayscale(0.3)_contrast(1.05)]"
+          ></iframe>
+        </div>
+        <a
+          href={site.directionsHref}
+          target="_blank"
+          rel="noopener"
+          class="mt-4 inline-block text-[12px] tracking-[2px] uppercase text-gold no-underline transition-colors hover:text-gold-hover"
+        >
+          Get Directions →
+        </a>
+      </div>
+
+      <ReserveForm />
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

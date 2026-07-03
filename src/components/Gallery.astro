@@ -1,0 +1,46 @@
+---
+import { Image } from 'astro:assets';
+import { gallery } from '../data/site';
+
+// Desktop widths inside the horizontal track; on mobile everything stacks full-width
+const widthClass = {
+  big: 'lg:w-[52vw]',
+  wide: 'lg:w-[46vw]',
+};
+---
+
+<section id="gallery" class="overflow-hidden bg-cream-deep py-40">
+  <div data-reveal class="relative mb-14 px-[7vw] text-center">
+    <span
+      aria-hidden="true"
+      class="pointer-events-none absolute -top-16 left-1/2 -translate-x-1/2 font-serif text-[clamp(120px,15vw,200px)] leading-none text-ink/5 select-none"
+      >03</span
+    >
+    <div class="relative mb-4 text-[11px] font-medium tracking-[4px] uppercase text-brick">Gallery</div>
+    <h2 class="relative m-0 font-serif text-[clamp(36px,5vw,64px)] leading-none font-medium">A Feast for the Eyes</h2>
+  </div>
+
+  <!-- Pinned + translated horizontally on desktop (see galleryHorizontal in animations.ts) -->
+  <div id="gallery-track" class="flex gap-4 px-[7vw] max-lg:flex-col">
+    {
+      gallery.map((g) => (
+        <div
+          data-img-reveal
+          class:list={[
+            'group relative shrink-0 overflow-hidden rounded bg-panel lg:h-[62vh] lg:w-[38vw] max-lg:h-[300px]',
+            g.size && widthClass[g.size],
+          ]}
+        >
+          <Image
+            src={g.img}
+            alt={g.alt}
+            widths={[640, 1200]}
+            sizes="(max-width: 1024px) 100vw, 45vw"
+            loading="lazy"
+            class="absolute inset-0 h-full w-full object-cover transition-transform duration-[600ms] group-hover:scale-[1.06]"
+          />
+        </div>
+      ))
+    }
+  </div>
+</section>

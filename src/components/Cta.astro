@@ -1,0 +1,21 @@
+---
+import { site } from '../data/site';
+---
+
+<section data-reveal-group class="flex flex-wrap items-center justify-between gap-8 bg-gold px-[7vw] py-20 text-dark">
+  <div>
+    <h2 class="m-0 mb-2.5 font-serif text-[clamp(34px,4.4vw,56px)] leading-none font-semibold">
+      Craving it at home?
+    </h2>
+    <p class="m-0 text-[17px] font-light text-[#3a2a12]">
+      Takeout and full-service catering available — call {site.phone} to order.
+    </p>
+  </div>
+  <a
+    href={site.phoneHref}
+    data-magnetic
+    class="rounded-[2px] bg-dark px-10 py-[18px] text-[13px] font-medium tracking-[2px] uppercase whitespace-nowrap text-cream no-underline transition-colors hover:bg-[#2a1a13]"
+  >
+    Call to Order →
+  </a>
+</section>

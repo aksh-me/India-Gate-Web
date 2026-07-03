@@ -1,0 +1,68 @@
+---
+import { Image } from 'astro:assets';
+import { signatureDishes, menuGroups } from '../data/site';
+---
+
+<section id="menu" class="bg-dark px-[7vw] py-40 text-cream">
+  <div data-reveal class="relative mb-16 flex flex-wrap items-end justify-between gap-6">
+    <span
+      aria-hidden="true"
+      class="pointer-events-none absolute -top-20 -left-3 font-serif text-[clamp(110px,14vw,190px)] leading-none text-cream/5 select-none"
+      >01</span
+    >
+    <div class="relative">
+      <div class="mb-4 text-[11px] tracking-[4px] uppercase text-gold">The Menu</div>
+      <h2 class="m-0 font-serif text-[clamp(40px,6vw,76px)] leading-none font-medium">Signature Plates</h2>
+    </div>
+    <a
+      href="/menu"
+      data-magnetic
+      class="rounded-[2px] border border-cream/35 px-7 py-3.5 text-[12px] tracking-[2px] uppercase text-cream no-underline transition-colors hover:bg-cream/10"
+    >
+      Full Menu &amp; Wine List
+    </a>
+  </div>
+
+  <div data-reveal-group class="mb-[90px] grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-7">
+    {
+      signatureDishes.map((dish) => (
+        <article class="overflow-hidden rounded border border-cream/10 bg-panel transition-colors hover:border-gold/40">
+          <div class="relative h-[200px] overflow-hidden bg-panel">
+            <Image src={dish.img} alt={dish.alt} widths={[400, 800]} sizes="(max-width: 640px) 100vw, 320px" loading="lazy" class="absolute inset-0 h-full w-full object-cover" />
+            <span class="absolute top-3.5 left-3.5 z-[2] rounded-[2px] bg-gold px-2.5 py-[5px] text-[9.5px] font-medium tracking-[1.5px] uppercase text-dark">
+              {dish.tag}
+            </span>
+          </div>
+          <div class="p-6">
+            <div class="mb-2.5 flex items-baseline justify-between gap-3">
+              <h3 class="m-0 font-serif text-2xl leading-[1.1] font-semibold">{dish.name}</h3>
+              <span class="text-lg whitespace-nowrap text-gold">{dish.price}</span>
+            </div>
+            <p class="m-0 text-sm leading-[1.6] font-light text-cream/65">{dish.desc}</p>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+
+  <div data-reveal-group class="grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-[60px]">
+    {
+      menuGroups.map((group) => (
+        <div>
+          <h3 class="m-0 mb-2 font-serif text-[28px] font-semibold text-gold">{group.title}</h3>
+          <div class="mb-6 h-px bg-cream/15" />
+          {group.items.map((item) => (
+            <div class="mb-[22px]">
+              <div class="mb-[5px] flex items-baseline justify-between gap-2.5">
+                <span class="text-base font-medium tracking-[0.3px]">{item.name}</span>
+                <span class="mx-1 flex-1 -translate-y-1 border-b border-dotted border-cream/25" />
+                <span class="text-[15px] whitespace-nowrap text-gold">{item.price}</span>
+              </div>
+              <p class="m-0 text-[13px] leading-[1.5] font-light text-cream/55">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      ))
+    }
+  </div>
+</section>

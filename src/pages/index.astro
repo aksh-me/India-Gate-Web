@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import Intro from '../components/Intro.astro';
+import Marquee from '../components/Marquee.astro';
+import MenuSection from '../components/MenuSection.astro';
+import About from '../components/About.astro';
+import Gallery from '../components/Gallery.astro';
+import Reviews from '../components/Reviews.astro';
+import Faq from '../components/Faq.astro';
+import Visit from '../components/Visit.astro';
+import Cta from '../components/Cta.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="India Gate | Authentic Indian Restaurant in St. John's, Newfoundland"
+  description="Enjoy authentic Indian cuisine in St. John's. Fresh curries, tandoori specialties, butter chicken, vegetarian dishes and naan — dine-in, takeout and catering on Duckworth Street."
+  intro={true}
+  includeFaq={true}
+  reserveHref="#reserve"
+  breadcrumbs={[{ name: 'Home', path: '/' }]}
+>
+  <Nav />
+  <main id="main">
+    <Hero />
+    <Intro />
+    <Marquee />
+    <MenuSection />
+    <About />
+    <Gallery />
+    <Reviews />
+    <Faq />
+    <Visit />
+    <Cta />
+  </main>
+  <Footer />
+</BaseLayout>

@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #f7f2e9;
+  --color-cream-deep: #efe7d8;
+  --color-ink: #2a211c;
+  --color-dark: #1c1411;
+  --color-panel: #241712;
+  --color-deep: #120c0a;
+  --color-gold: #e3a52b;
+  --color-gold-hover: #f0b53a;
+  --color-gold-dark: #c8941a;
+  --color-gold-pale: #f3c98a;
+  --color-brick: #9e2b25;
+  --color-body-text: #5a4d42;
+  --color-body-muted: #8a7a6c;
+
+  --font-serif: "Cormorant Garamond", serif;
+  --font-sans: "Jost", system-ui, sans-serif;
+
+  --animate-kenburns: kenburns 20s ease-out forwards;
+
+  @keyframes kenburns {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.12); }
+  }
+}
+
+/* Lenis smooth-scroll integration */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+/* Pre-hide animated elements only when animations will actually run
+   (html.anim is set inline in <head>, gated on prefers-reduced-motion) */
+html.anim [data-reveal],
+html.anim [data-reveal-group] > *,
+html.anim [data-about-copy] > *,
+html.anim [data-split],
+html.anim [data-hero-title],
+html.anim [data-hero-fade] {
+  opacity: 0;
+}
+
+#preloader {
+  display: none;
+}
+html.anim #preloader {
+  display: flex;
+}
+
+#cursor-dot,
+#cursor-ring {
+  display: none;
+}
+@media (pointer: fine) {
+  html.anim #cursor-dot,
+  html.anim #cursor-ring {
+    display: block;
+  }
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-dark);
+}
+
+/* Visible keyboard focus everywhere (WCAG 2.4.7) */
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Reserve room for the sticky mobile CTA bar */
+@media (max-width: 767px) {
+  body {
+    padding-bottom: calc(58px + env(safe-area-inset-bottom));
+  }
+}

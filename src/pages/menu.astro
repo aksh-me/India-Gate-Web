@@ -1,0 +1,120 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { signatureDishes, menuGroups, site } from '../data/site';
+---
+
+<BaseLayout
+  title="Menu | India Gate — Indian Restaurant in St. John's"
+  description="Explore the India Gate menu: butter chicken, lamb curry, tandoori specialties from the clay oven, vegetarian and vegan curries, fresh naan and more. Dine-in or Indian takeout in St. John's."
+  breadcrumbs={[
+    { name: 'Home', path: '/' },
+    { name: 'Menu', path: '/menu/' },
+  ]}
+>
+  <Nav />
+  <main id="main" class="bg-dark text-cream">
+    <section class="px-[7vw] pt-44 pb-24">
+      <nav aria-label="Breadcrumb" class="mb-10 text-[12px] tracking-[1.5px] uppercase text-cream/50">
+        <a href="/" class="text-inherit no-underline transition-colors hover:text-gold">Home</a>
+        <span aria-hidden="true" class="mx-2 text-gold">·</span>
+        <span aria-current="page" class="text-cream/80">Menu</span>
+      </nav>
+      <p class="m-0 mb-4 text-[11px] tracking-[4px] uppercase text-gold">The Menu</p>
+      <h1 class="m-0 mb-6 font-serif text-[clamp(40px,6vw,76px)] leading-none font-medium">
+        Authentic Indian Cuisine<br />in St. John's
+      </h1>
+      <p class="m-0 max-w-[560px] text-[17px] leading-[1.8] font-light text-cream/75">
+        Every dish is made fresh — from slow-cooked North Indian curries to tandoori grilled in our
+        live-fire clay oven. Vegetarian, vegan and gluten-free options throughout. Available for
+        dine-in and takeout; call {site.phone} to order.
+      </p>
+    </section>
+
+    <section aria-labelledby="signature-heading" class="px-[7vw] pb-24">
+      <h2 id="signature-heading" class="m-0 mb-10 font-serif text-[32px] font-semibold text-gold">
+        Signature Plates
+      </h2>
+      <div class="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-7">
+        {
+          signatureDishes.map((dish) => (
+            <article class="overflow-hidden rounded border border-cream/10 bg-panel transition-colors hover:border-gold/40">
+              <div class="relative h-[200px] overflow-hidden bg-panel">
+                <Image
+                  src={dish.img}
+                  alt={dish.alt}
+                  widths={[400, 800]}
+                  sizes="(max-width: 640px) 100vw, 320px"
+                  loading="lazy"
+                  class="absolute inset-0 h-full w-full object-cover"
+                />
+                <span class="absolute top-3.5 left-3.5 z-[2] rounded-[2px] bg-gold px-2.5 py-[5px] text-[9.5px] font-medium tracking-[1.5px] uppercase text-dark">
+                  {dish.tag}
+                </span>
+              </div>
+              <div class="p-6">
+                <div class="mb-2.5 flex items-baseline justify-between gap-3">
+                  <h3 class="m-0 font-serif text-2xl leading-[1.1] font-semibold">{dish.name}</h3>
+                  <span class="text-lg whitespace-nowrap text-gold">{dish.price}</span>
+                </div>
+                <p class="m-0 text-sm leading-[1.6] font-light text-cream/65">{dish.desc}</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section aria-labelledby="fullmenu-heading" class="px-[7vw] pb-32">
+      <h2 id="fullmenu-heading" class="sr-only">Full Menu</h2>
+      <div class="grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-[60px]">
+        {
+          menuGroups.map((group) => (
+            <div>
+              <h3 class="m-0 mb-2 font-serif text-[28px] font-semibold text-gold">{group.title}</h3>
+              <div class="mb-6 h-px bg-cream/15" />
+              {group.items.map((item) => (
+                <div class="mb-[22px]">
+                  <div class="mb-[5px] flex items-baseline justify-between gap-2.5">
+                    <span class="text-base font-medium tracking-[0.3px]">{item.name}</span>
+                    <span class="mx-1 flex-1 -translate-y-1 border-b border-dotted border-cream/25" />
+                    <span class="text-[15px] whitespace-nowrap text-gold">{item.price}</span>
+                  </div>
+                  <p class="m-0 text-[13px] leading-[1.5] font-light text-cream/55">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="flex flex-wrap items-center justify-between gap-8 bg-gold px-[7vw] py-16 text-dark">
+      <div>
+        <h2 class="m-0 mb-2 font-serif text-[clamp(28px,3.5vw,44px)] leading-none font-semibold">
+          Ready to order?
+        </h2>
+        <p class="m-0 text-base font-light text-[#3a2a12]">
+          Indian takeout and delivery in St. John's — or reserve a table for tonight.
+        </p>
+      </div>
+      <div class="flex flex-wrap gap-4">
+        <a
+          href={site.phoneHref}
+          class="rounded-[2px] bg-dark px-8 py-4 text-[13px] font-medium tracking-[2px] uppercase whitespace-nowrap text-cream no-underline transition-colors hover:bg-[#2a1a13]"
+        >
+          Call {site.phone}
+        </a>
+        <a
+          href="/contact#reserve"
+          class="rounded-[2px] border border-dark/40 px-8 py-4 text-[13px] font-medium tracking-[2px] uppercase whitespace-nowrap text-dark no-underline transition-colors hover:bg-dark/10"
+        >
+          Reserve a Table
+        </a>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

@@ -1,0 +1,95 @@
+---
+const partySizes = ['1 guest', '2 guests', '3 guests', '4 guests', '5 guests', '6+ guests'];
+const times = [
+  '5:00 PM', '5:30 PM', '6:00 PM', '6:30 PM', '7:00 PM',
+  '7:30 PM', '8:00 PM', '8:30 PM', '9:00 PM',
+];
+
+const labelClass = 'mb-2 block text-[11px] tracking-[1.5px] uppercase text-cream/60';
+const inputClass =
+  'w-full rounded-[2px] border border-cream/[0.18] bg-dark p-[13px] text-sm text-cream [color-scheme:dark]';
+---
+
+<div
+  id="reserve"
+  data-reveal
+  class="flex flex-col justify-center rounded-md border border-cream/10 bg-panel px-[42px] py-[46px] max-sm:px-6 max-sm:py-[34px]"
+>
+  <div id="reserve-success" hidden class="py-[30px] text-center">
+    <div class="mx-auto mb-6 flex h-[62px] w-[62px] items-center justify-center rounded-full bg-gold text-[30px] text-dark">
+      ✓
+    </div>
+    <h3 class="m-0 mb-3.5 font-serif text-[34px] font-semibold">Request Received</h3>
+    <p class="m-0 mb-7 text-[15px] leading-[1.7] font-light text-cream/70">
+      Thank you, <span id="reserve-success-name">guest</span>. We'll confirm your table by phone or
+      email shortly. We can't wait to host you.
+    </p>
+    <button
+      type="button"
+      id="reserve-reset"
+      class="cursor-pointer rounded-[2px] border border-cream/35 bg-transparent px-[26px] py-[13px] text-[12px] tracking-[2px] uppercase text-cream transition-colors hover:bg-cream/10"
+    >
+      Make Another
+    </button>
+  </div>
+
+  <form id="reserve-form" novalidate>
+    <div class="mb-3.5 text-[11px] font-medium tracking-[4px] uppercase text-gold">Reservations</div>
+    <h3 class="m-0 mb-[30px] font-serif text-[40px] leading-none font-medium">Book Your Table</h3>
+
+    <div class="mb-4 grid grid-cols-2 gap-4 max-sm:grid-cols-1">
+      <div>
+        <label for="form-party" class={labelClass}>Party Size</label>
+        <select id="form-party" name="party" class={inputClass}>
+          {partySizes.map((p) => <option selected={p === '2 guests'}>{p}</option>)}
+        </select>
+      </div>
+      <div>
+        <label for="form-time" class={labelClass}>Time</label>
+        <select id="form-time" name="time" class={inputClass}>
+          {times.map((t) => <option selected={t === '7:00 PM'}>{t}</option>)}
+        </select>
+      </div>
+    </div>
+    <div class="mb-4">
+      <label for="form-date" class={labelClass}>Date</label>
+      <input type="date" id="form-date" name="date" class={inputClass} />
+    </div>
+    <div class="mb-4">
+      <label for="form-name" class={labelClass}>Name</label>
+      <input type="text" id="form-name" name="name" placeholder="Your name" autocomplete="name" class={inputClass} />
+    </div>
+    <div class="mb-[26px]">
+      <label for="form-phone" class={labelClass}>Phone</label>
+      <input type="tel" id="form-phone" name="phone" placeholder="(709) 000-0000" autocomplete="tel" class={inputClass} />
+    </div>
+    <button
+      type="submit"
+      class="w-full cursor-pointer rounded-[2px] border-0 bg-gold p-[17px] text-[13px] font-semibold tracking-[2px] uppercase text-dark transition-colors hover:bg-gold-hover"
+    >
+      Request Reservation
+    </button>
+    <p class="mt-4 mb-0 text-center text-[12px] font-light text-cream/45">
+      For parties of 8 or more, please call us directly.
+    </p>
+  </form>
+</div>
+
+<script>
+  const form = document.getElementById('reserve-form') as HTMLFormElement;
+  const success = document.getElementById('reserve-success')!;
+  const successName = document.getElementById('reserve-success-name')!;
+  const nameInput = document.getElementById('form-name') as HTMLInputElement;
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    successName.textContent = nameInput.value.trim() || 'guest';
+    form.hidden = true;
+    success.hidden = false;
+  });
+
+  document.getElementById('reserve-reset')!.addEventListener('click', () => {
+    success.hidden = true;
+    form.hidden = false;
+  });
+</script>

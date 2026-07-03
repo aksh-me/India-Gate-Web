@@ -1,0 +1,53 @@
+---
+import { Image } from 'astro:assets';
+import { heroImage } from '../data/site';
+---
+
+<header id="top" class="relative grid min-h-screen w-full grid-cols-2 bg-dark max-lg:grid-cols-1">
+  <div class="flex flex-col justify-center px-[7vw] pt-[120px] pb-20 text-cream max-lg:pt-[140px] max-lg:pb-[60px]">
+    <p data-hero-fade class="m-0 mb-7 text-[12px] tracking-[5px] uppercase text-gold">
+      Authentic Indian Restaurant · Duckworth Street, St. John's
+    </p>
+    <h1 data-hero-title class="m-0 mb-[26px] font-serif text-[clamp(44px,5.5vw,84px)] leading-none font-medium tracking-[-1px]">
+      Authentic.<br />Family-Owned.<br />
+      <span class="italic text-gold">Since Day One.</span>
+    </h1>
+    <p data-hero-fade class="m-0 mb-10 max-w-[440px] text-[17px] leading-[1.8] font-light text-cream/80">
+      St. John's oldest Indian restaurant — over 25 years of traditional North Indian cooking in
+      Newfoundland. Slow-cooked curries, live-fire tandoori, fresh naan, and a warm welcome for
+      dine-in, takeout and catering.
+    </p>
+    <div data-hero-fade class="flex flex-wrap gap-4">
+      <a
+        href="#reserve"
+        data-magnetic
+        class="rounded-[2px] bg-gold px-[34px] py-4 text-[13px] font-medium tracking-[2px] uppercase text-dark no-underline transition-colors hover:bg-gold-hover"
+      >
+        Reserve a Table
+      </a>
+      <a
+        href="/menu"
+        data-magnetic
+        class="rounded-[2px] border border-cream/40 px-[34px] py-4 text-[13px] font-normal tracking-[2px] uppercase text-cream no-underline transition-colors hover:bg-cream/10"
+      >
+        View Menu
+      </a>
+    </div>
+  </div>
+
+  <div data-hero-media class="relative min-h-[420px] overflow-hidden bg-panel">
+    <Image
+      src={heroImage}
+      alt="Candle-lit dining room at India Gate, an authentic Indian restaurant in downtown St. John's"
+      widths={[640, 1024, 1600]}
+      sizes="(max-width: 1024px) 100vw, 50vw"
+      loading="eager"
+      fetchpriority="high"
+      class="absolute inset-0 h-full w-full animate-kenburns object-cover"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-[rgba(20,13,10,0.7)] to-transparent to-45%"></div>
+    <div class="absolute bottom-9 left-9 z-[2] font-serif text-xl italic text-cream/90">
+      "...warm, generous, and unmistakably authentic."
+    </div>
+  </div>
+</header>

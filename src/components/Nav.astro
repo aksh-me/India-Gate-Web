@@ -1,0 +1,96 @@
+---
+import { site } from '../data/site';
+
+const links = [
+  { href: '/menu', label: 'Menu' },
+  { href: '/#about', label: 'About' },
+  { href: '/takeout-delivery', label: 'Takeout' },
+  { href: '/contact', label: 'Contact' },
+];
+---
+
+<nav
+  id="site-nav"
+  class="group fixed inset-x-0 top-0 z-50 flex items-center justify-between border-b border-transparent px-[7vw] py-[26px] text-cream transition-all duration-[380ms] data-scrolled:border-black/[0.07] data-scrolled:bg-cream/95 data-scrolled:py-[14px] data-scrolled:text-ink data-scrolled:shadow-[0_6px_30px_rgba(0,0,0,0.08)] data-scrolled:backdrop-blur-md"
+>
+  <a href="#top" class="flex flex-col leading-none text-inherit no-underline">
+    <span class="font-serif text-[26px] font-semibold tracking-[3px]">{site.name.toUpperCase()}</span>
+    <span class="mt-[3px] text-[9.5px] font-normal tracking-[4px] opacity-70">{site.location}</span>
+  </a>
+
+  <div
+    id="nav-links"
+    class="flex items-center gap-[38px] max-md:pointer-events-none max-md:invisible max-md:absolute max-md:inset-x-0 max-md:top-full max-md:-translate-y-3 max-md:flex-col max-md:items-start max-md:gap-0 max-md:bg-dark/95 max-md:px-[7vw] max-md:pt-3 max-md:pb-6 max-md:text-cream max-md:opacity-0 max-md:backdrop-blur-md max-md:transition-all max-md:duration-300 max-md:ease-out max-md:motion-reduce:transition-none max-md:group-data-open:pointer-events-auto max-md:group-data-open:visible max-md:group-data-open:translate-y-0 max-md:group-data-open:opacity-100 max-md:group-data-scrolled:bg-cream/95 max-md:group-data-scrolled:text-ink"
+  >
+    {
+      links.map((link) => (
+        <a
+          href={link.href}
+          class="text-[13px] font-normal tracking-[1.5px] uppercase text-inherit no-underline max-md:w-full max-md:border-b max-md:border-current/10 max-md:py-3.5"
+        >
+          {link.label}
+        </a>
+      ))
+    }
+    <a
+      href="/takeout-delivery"
+      class="rounded-[2px] bg-gold px-[22px] py-[11px] text-[12px] font-medium tracking-[1.5px] uppercase text-dark no-underline transition-colors hover:bg-gold-hover max-md:mt-4"
+    >
+      Order Takeout
+    </a>
+  </div>
+
+  <button
+    id="nav-toggle"
+    class="hidden cursor-pointer flex-col gap-[5px] border-0 bg-transparent p-1.5 text-inherit max-md:flex"
+    aria-label="Open menu"
+    aria-expanded="false"
+  >
+    <span class="block h-0.5 w-6 bg-current transition-transform group-data-open:translate-y-[7px] group-data-open:rotate-45"></span>
+    <span class="block h-0.5 w-6 bg-current transition-opacity group-data-open:opacity-0"></span>
+    <span class="block h-0.5 w-6 bg-current transition-transform group-data-open:-translate-y-[7px] group-data-open:-rotate-45"></span>
+  </button>
+</nav>
+
+<script>
+  import { gsap } from 'gsap';
+
+  const nav = document.getElementById('site-nav')!;
+  const toggle = document.getElementById('nav-toggle')!;
+  const links = document.querySelectorAll('#nav-links > a');
+
+  const onScroll = () => {
+    if (window.scrollY > 60) nav.setAttribute('data-scrolled', '');
+    else nav.removeAttribute('data-scrolled');
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  toggle.addEventListener('click', () => {
+    const open = nav.toggleAttribute('data-open');
+    toggle.setAttribute('aria-expanded', String(open));
+    // The panel slide is CSS; GSAP staggers the links in behind it
+    if (open && document.documentElement.classList.contains('anim')) {
+      gsap.fromTo(
+        links,
+        { y: 14, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.35,
+          stagger: 0.05,
+          delay: 0.08,
+          ease: 'power2.out',
+          clearProps: 'all',
+        }
+      );
+    }
+  });
+
+  nav.addEventListener('click', (e) => {
+    if ((e.target as HTMLElement).closest('a')) {
+      nav.removeAttribute('data-open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+</script>

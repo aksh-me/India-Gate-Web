@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:#f7f2e9;color:#2a211c;font-family:'Jost',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  ::selection{background:#e3a52b;color:#1c1411}
+  @keyframes kb{0%{transform:scale(1)}100%{transform:scale(1.12)}}
+  @keyframes fadeup{0%{opacity:0;transform:translateY(24px)}100%{opacity:1;transform:translateY(0)}}
+  input,select,textarea,button{font-family:inherit}
+</style>
+</helmet>
+
+<div style="position:relative;width:100%;overflow:hidden">
+
+  <!-- NAV -->
+  <nav style="{{ navStyle }}">
+    <a href="#top" style="display:flex;flex-direction:column;line-height:1;text-decoration:none;color:inherit">
+      <span style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:26px;letter-spacing:3px">INDIA GATE</span>
+      <span style="font-size:9.5px;letter-spacing:4px;opacity:.7;margin-top:3px;font-weight:400">ST. JOHN'S · NEWFOUNDLAND</span>
+    </a>
+    <div style="display:flex;align-items:center;gap:38px">
+      <a href="#menu" style="text-decoration:none;color:inherit;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;font-weight:400">Menu</a>
+      <a href="#about" style="text-decoration:none;color:inherit;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;font-weight:400">About</a>
+      <a href="#gallery" style="text-decoration:none;color:inherit;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;font-weight:400">Gallery</a>
+      <a href="#visit" style="text-decoration:none;color:inherit;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;font-weight:400">Visit</a>
+      <a href="#reserve" style="text-decoration:none;color:#1c1411;background:#e3a52b;padding:11px 22px;border-radius:2px;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500" style-hover="background:#f0b53a">Order Online</a>
+    </div>
+  </nav>
+
+  <!-- HERO: OVERLAY -->
+  <sc-if value="{{ heroOverlay }}" hint-placeholder-val="{{ true }}">
+  <header id="top" style="position:relative;height:100vh;min-height:680px;width:100%;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:#1c1411">
+    <img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?w=1600&q=80&auto=format&fit=crop" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:kb 18s ease-out forwards">
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,13,10,.62) 0%,rgba(20,13,10,.35) 45%,rgba(20,13,10,.85) 100%)"></div>
+    <div style="position:relative;z-index:2;color:#f7f2e9;padding:0 24px;max-width:860px">
+      <div style="font-size:12px;letter-spacing:5px;text-transform:uppercase;color:#e3a52b;margin-bottom:26px">Authentic Indian · Est. St. John's</div>
+      <h1 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(48px,8vw,104px);line-height:.98;margin:0 0 24px;letter-spacing:-1px">St. John's Oldest<br><span style="font-style:italic;color:#e3a52b">Indian Table</span></h1>
+      <p style="font-size:17px;line-height:1.7;max-width:520px;margin:0 auto 38px;color:rgba(247,242,233,.82);font-weight:300">Fresh, authentic North Indian cuisine, family-owned and served on Duckworth Street for more than 25 years.</p>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+        <a href="#reserve" style="text-decoration:none;color:#1c1411;background:#e3a52b;padding:16px 34px;border-radius:2px;font-size:13px;letter-spacing:2px;text-transform:uppercase;font-weight:500" style-hover="background:#f0b53a">Reserve a Table</a>
+        <a href="#menu" style="text-decoration:none;color:#f7f2e9;border:1px solid rgba(247,242,233,.4);padding:16px 34px;border-radius:2px;font-size:13px;letter-spacing:2px;text-transform:uppercase;font-weight:400" style-hover="border-color:#f7f2e9;background:rgba(247,242,233,.08)">View Menu</a>
+      </div>
+    </div>
+  </header>
+  </sc-if>
+
+  <!-- HERO: SPLIT -->
+  <sc-if value="{{ heroSplit }}" hint-placeholder-val="{{ true }}">
+  <header id="top" style="position:relative;min-height:100vh;width:100%;display:grid;grid-template-columns:1fr 1fr;background:#1c1411">
+    <div style="display:flex;flex-direction:column;justify-content:center;padding:120px 7vw 80px;color:#f7f2e9">
+      <div style="font-size:12px;letter-spacing:5px;text-transform:uppercase;color:#e3a52b;margin-bottom:28px">25+ Years · Duckworth Street, St. John's</div>
+      <h1 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(44px,5.5vw,84px);line-height:1.0;margin:0 0 26px;letter-spacing:-1px">Authentic.<br>Family-Owned.<br><span style="font-style:italic;color:#e3a52b">Since Day One.</span></h1>
+      <p style="font-size:17px;line-height:1.8;max-width:440px;margin:0 0 40px;color:rgba(247,242,233,.78);font-weight:300">As St. John's oldest Indian restaurant, India Gate has served traditional North Indian cooking for over 25 years — slow-cooked curries, live-fire tandoor, and a warm welcome for everyone.</p>
+      <div style="display:flex;gap:16px;flex-wrap:wrap">
+        <a href="#reserve" style="text-decoration:none;color:#1c1411;background:#e3a52b;padding:16px 34px;border-radius:2px;font-size:13px;letter-spacing:2px;text-transform:uppercase;font-weight:500" style-hover="background:#f0b53a">Reserve a Table</a>
+        <a href="#menu" style="text-decoration:none;color:#f7f2e9;border:1px solid rgba(247,242,233,.4);padding:16px 34px;border-radius:2px;font-size:13px;letter-spacing:2px;text-transform:uppercase;font-weight:400" style-hover="background:rgba(247,242,233,.08)">View Menu</a>
+      </div>
+    </div>
+    <div style="position:relative;overflow:hidden;background:#241712;min-height:420px">
+      <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?w=1200&q=80&auto=format&fit=crop" alt="India Gate dining room" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:kb 20s ease-out forwards">
+      <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(20,13,10,.7),transparent 45%)"></div>
+      <div style="position:absolute;left:36px;bottom:36px;color:rgba(247,242,233,.9);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;z-index:2">"...warm, generous, and unmistakably authentic."</div>
+    </div>
+  </header>
+  </sc-if>
+
+  <!-- HERO: DRAMATIC -->
+  <sc-if value="{{ heroDramatic }}" hint-placeholder-val="{{ true }}">
+  <header id="top" style="position:relative;height:100vh;min-height:700px;width:100%;overflow:hidden;background:#1c1411;display:flex;align-items:flex-end">
+    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&q=80&auto=format&fit=crop" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:kb 22s ease-out forwards">
+    <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(18,12,10,.96) 0%,rgba(18,12,10,.35) 55%,rgba(18,12,10,.25) 100%)"></div>
+    <div style="position:relative;z-index:2;padding:0 7vw 9vh;color:#f7f2e9;width:100%">
+      <div style="font-size:12px;letter-spacing:5px;text-transform:uppercase;color:#e3a52b;margin-bottom:20px">Authentic North Indian · Downtown St. John's</div>
+      <h1 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(56px,12vw,180px);line-height:.85;margin:0;letter-spacing:-3px">INDIA <span style="font-style:italic;color:#e3a52b">GATE</span></h1>
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:30px;margin-top:34px;border-top:1px solid rgba(247,242,233,.18);padding-top:30px">
+        <p style="font-size:17px;line-height:1.7;max-width:480px;margin:0;color:rgba(247,242,233,.8);font-weight:300">Family-owned for more than 25 years — the region's original Indian kitchen, in the heart of Newfoundland's capital. An evening to savour, slowly.</p>
+        <div style="display:flex;gap:16px;flex-wrap:wrap">
+          <a href="#reserve" style="text-decoration:none;color:#1c1411;background:#e3a52b;padding:16px 34px;border-radius:2px;font-size:13px;letter-spacing:2px;text-transform:uppercase;font-weight:500" style-hover="background:#f0b53a">Reserve</a>
+          <a href="#menu" style="text-decoration:none;color:#f7f2e9;border:1px solid rgba(247,242,233,.4);padding:16px 34px;border-radius:2px;font-size:13px;letter-spacing:2px;text-transform:uppercase;font-weight:400" style-hover="background:rgba(247,242,233,.08)">Menu</a>
+        </div>
+      </div>
+    </div>
+  </header>
+  </sc-if>
+
+  <!-- INTRO STRIP -->
+  <section style="background:#f7f2e9;padding:96px 7vw;text-align:center">
+    <div style="max-width:780px;margin:0 auto">
+      <div style="display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:30px">
+        <span style="height:1px;width:48px;background:#c8941a"></span>
+        <span style="font-size:11px;letter-spacing:4px;text-transform:uppercase;color:#9e2b25;font-weight:500">Namaste &amp; Welcome</span>
+        <span style="height:1px;width:48px;background:#c8941a"></span>
+      </div>
+      <p style="font-family:'Cormorant Garamond',serif;font-size:clamp(26px,3.4vw,42px);line-height:1.4;margin:0;color:#2a211c;font-weight:500">Fresh, authentic North Indian cooking — from the live-fire tandoor to our ever-popular butter chicken and naan — made with the freshest, most flavourful ingredients, the same way for over 25 years.</p>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section id="menu" style="background:#1c1411;color:#f7f2e9;padding:110px 7vw">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:24px;margin-bottom:64px">
+      <div>
+        <div style="font-size:11px;letter-spacing:4px;text-transform:uppercase;color:#e3a52b;margin-bottom:16px">The Menu</div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(40px,6vw,76px);line-height:1;margin:0">Signature Plates</h2>
+      </div>
+      <a href="#reserve" style="text-decoration:none;color:#f7f2e9;border:1px solid rgba(247,242,233,.35);padding:14px 28px;border-radius:2px;font-size:12px;letter-spacing:2px;text-transform:uppercase" style-hover="background:rgba(247,242,233,.08)">Full Menu &amp; Wine List</a>
+    </div>
+
+    <!-- Featured dishes -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px;margin-bottom:90px">
+      <sc-for list="{{ signatureDishes }}" as="dish" hint-placeholder-count="4">
+        <div style="background:#241712;border:1px solid rgba(247,242,233,.08);border-radius:4px;overflow:hidden" style-hover="border-color:rgba(227,165,43,.4)">
+          <div style="position:relative;height:200px;background:#241712;overflow:hidden">
+            <img src="{{ dish.img }}" alt="{{ dish.name }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+            <span style="position:absolute;top:14px;left:14px;font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;background:#e3a52b;color:#1c1411;padding:5px 10px;border-radius:2px;font-weight:500;z-index:2">{{ dish.tag }}</span>
+          </div>
+          <div style="padding:24px">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:10px">
+              <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:24px;margin:0;line-height:1.1">{{ dish.name }}</h3>
+              <span style="color:#e3a52b;font-size:18px;font-weight:400;white-space:nowrap">{{ dish.price }}</span>
+            </div>
+            <p style="margin:0;font-size:14px;line-height:1.6;color:rgba(247,242,233,.65);font-weight:300">{{ dish.desc }}</p>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+
+    <!-- Menu groups -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:60px">
+      <sc-for list="{{ menuGroups }}" as="group" hint-placeholder-count="4">
+        <div>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:28px;margin:0 0 8px;color:#e3a52b">{{ group.title }}</h3>
+          <div style="height:1px;background:rgba(247,242,233,.15);margin-bottom:24px"></div>
+          <sc-for list="{{ group.items }}" as="item" hint-placeholder-count="4">
+            <div style="margin-bottom:22px">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:5px">
+                <span style="font-size:16px;font-weight:500;letter-spacing:.3px">{{ item.name }}</span>
+                <span style="flex:1;border-bottom:1px dotted rgba(247,242,233,.25);margin:0 4px;transform:translateY(-4px)"></span>
+                <span style="color:#e3a52b;font-size:15px;white-space:nowrap">{{ item.price }}</span>
+              </div>
+              <p style="margin:0;font-size:13px;line-height:1.5;color:rgba(247,242,233,.55);font-weight:300">{{ item.desc }}</p>
+            </div>
+          </sc-for>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" style="background:#f7f2e9;padding:110px 7vw;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center">
+    <div style="position:relative;height:560px;border-radius:4px;overflow:hidden;background:#e7dcc8">
+      <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=900&q=80&auto=format&fit=crop" alt="In the kitchen at India Gate" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+      <div style="position:absolute;right:-1px;bottom:-1px;background:#9e2b25;color:#f7f2e9;padding:26px 30px;max-width:260px">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:46px;line-height:1;font-weight:600">25+</div>
+        <div style="font-size:12px;letter-spacing:1.5px;text-transform:uppercase;margin-top:6px;opacity:.85">years serving St. John's</div>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:11px;letter-spacing:4px;text-transform:uppercase;color:#9e2b25;margin-bottom:18px;font-weight:500">Our Story</div>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(34px,4.6vw,58px);line-height:1.05;margin:0 0 26px">The region's original<br>Indian kitchen</h2>
+      <p style="font-size:16px;line-height:1.85;color:#5a4d42;margin:0 0 20px;font-weight:300">For more than 25 years, family-owned India Gate has served fresh, authentic Indian cuisine to St. John's and the surrounding area. As the oldest Indian restaurant in the region, we're known for our quality and consistency, using only the freshest, most flavourful ingredients.</p>
+      <p style="font-size:16px;line-height:1.85;color:#5a4d42;margin:0 0 34px;font-weight:300">From perfectly cooked lamb and tandoori chicken to our ever-popular naan, there's something for everyone — whether you're new to Indian food or a seasoned veteran. Dine-in, takeout and catering available.</p>
+      <div style="display:flex;gap:48px;flex-wrap:wrap">
+        <div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:40px;color:#9e2b25;font-weight:600;line-height:1">Oldest</div>
+          <div style="font-size:12px;letter-spacing:1px;text-transform:uppercase;color:#8a7a6c;margin-top:4px">Indian spot in the region</div>
+        </div>
+        <div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:40px;color:#9e2b25;font-weight:600;line-height:1">V · GF</div>
+          <div style="font-size:12px;letter-spacing:1px;text-transform:uppercase;color:#8a7a6c;margin-top:4px">Vegan & gluten-free options</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery" style="background:#efe7d8;padding:110px 7vw">
+    <div style="text-align:center;margin-bottom:56px">
+      <div style="font-size:11px;letter-spacing:4px;text-transform:uppercase;color:#9e2b25;margin-bottom:16px;font-weight:500">Gallery</div>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(36px,5vw,64px);line-height:1;margin:0">A Feast for the Eyes</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px;gap:14px">
+      <sc-for list="{{ gallery }}" as="g" hint-placeholder-count="6">
+        <div style="{{ g.style }}">
+          <img src="{{ g.img }}" alt="{{ g.label }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s ease" style-hover="transform:scale(1.06)">
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <sc-if value="{{ showReviews }}" hint-placeholder-val="{{ true }}">
+  <section style="background:#9e2b25;color:#f7f2e9;padding:104px 7vw;text-align:center">
+    <div style="font-size:11px;letter-spacing:4px;text-transform:uppercase;color:#f3c98a;margin-bottom:48px;font-weight:500">Guests Are Saying</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:48px;max-width:1200px;margin:0 auto">
+      <sc-for list="{{ reviews }}" as="r" hint-placeholder-count="3">
+        <div>
+          <div style="color:#f3c98a;font-size:18px;letter-spacing:3px;margin-bottom:18px">★★★★★</div>
+          <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;line-height:1.5;margin:0 0 22px;font-weight:400">"{{ r.quote }}"</p>
+          <div style="font-size:13px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500">{{ r.name }}</div>
+          <div style="font-size:12px;color:rgba(247,242,233,.7);margin-top:4px">{{ r.meta }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+  </sc-if>
+
+  <!-- VISIT + RESERVE -->
+  <section id="visit" style="background:#1c1411;color:#f7f2e9;padding:110px 7vw;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:stretch">
+    <!-- Visit info -->
+    <div>
+      <div style="font-size:11px;letter-spacing:4px;text-transform:uppercase;color:#e3a52b;margin-bottom:18px;font-weight:500">Visit Us</div>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(34px,4.6vw,58px);line-height:1.05;margin:0 0 36px">Downtown<br>St. John's</h2>
+
+      <div style="display:flex;flex-direction:column;gap:26px;margin-bottom:36px">
+        <div>
+          <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#e3a52b;margin-bottom:8px">Address</div>
+          <div style="font-size:17px;line-height:1.6;font-weight:300">286 Duckworth Street<br>St. John's, NL · A1C 1H3</div>
+        </div>
+        <div>
+          <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#e3a52b;margin-bottom:8px">Reservations & Takeout</div>
+          <div style="font-size:17px;font-weight:300">(709) 753-6006 · indiagatenl.ca</div>
+        </div>
+        <div>
+          <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#e3a52b;margin-bottom:10px">Hours</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <sc-for list="{{ hours }}" as="h" hint-placeholder-count="4">
+              <div style="display:flex;justify-content:space-between;max-width:340px;font-size:15px;font-weight:300;border-bottom:1px solid rgba(247,242,233,.1);padding-bottom:8px">
+                <span>{{ h.day }}</span><span style="color:rgba(247,242,233,.7)">{{ h.time }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+
+      <div style="position:relative;height:200px;border-radius:4px;overflow:hidden;background:#1a110d">
+        <iframe title="India Gate location map" src="https://www.google.com/maps?q=286+Duckworth+Street,+St.+John's,+NL&output=embed" style="position:absolute;inset:0;width:100%;height:100%;border:0;filter:grayscale(.3) contrast(1.05)" loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <!-- Reservation form -->
+    <div id="reserve" style="background:#241712;border:1px solid rgba(247,242,233,.1);border-radius:6px;padding:46px 42px;display:flex;flex-direction:column;justify-content:center">
+      <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
+        <div style="text-align:center;padding:30px 0">
+          <div style="width:62px;height:62px;border-radius:50%;background:#e3a52b;color:#1c1411;display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 24px">✓</div>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-size:34px;margin:0 0 14px;font-weight:600">Request Received</h3>
+          <p style="font-size:15px;line-height:1.7;color:rgba(247,242,233,.7);margin:0 0 28px;font-weight:300">Thank you, {{ formName }}. We'll confirm your table by phone or email shortly. We can't wait to host you.</p>
+          <button onClick="{{ resetForm }}" style="background:none;border:1px solid rgba(247,242,233,.35);color:#f7f2e9;padding:13px 26px;border-radius:2px;font-size:12px;letter-spacing:2px;text-transform:uppercase;cursor:pointer">Make Another</button>
+        </div>
+      </sc-if>
+      <sc-if value="{{ notSubmitted }}" hint-placeholder-val="{{ true }}">
+        <div>
+          <div style="font-size:11px;letter-spacing:4px;text-transform:uppercase;color:#e3a52b;margin-bottom:14px;font-weight:500">Reservations</div>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:40px;line-height:1;margin:0 0 30px">Book Your Table</h3>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+            <div>
+              <label style="display:block;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(247,242,233,.6);margin-bottom:8px">Party Size</label>
+              <select value="{{ formParty }}" onChange="{{ onParty }}" style="width:100%;background:#1c1411;border:1px solid rgba(247,242,233,.18);color:#f7f2e9;padding:13px;border-radius:2px;font-size:14px">
+                <option>1 guest</option><option>2 guests</option><option>3 guests</option><option>4 guests</option><option>5 guests</option><option>6+ guests</option>
+              </select>
+            </div>
+            <div>
+              <label style="display:block;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(247,242,233,.6);margin-bottom:8px">Time</label>
+              <select value="{{ formTime }}" onChange="{{ onTime }}" style="width:100%;background:#1c1411;border:1px solid rgba(247,242,233,.18);color:#f7f2e9;padding:13px;border-radius:2px;font-size:14px">
+                <option>5:00 PM</option><option>5:30 PM</option><option>6:00 PM</option><option>6:30 PM</option><option>7:00 PM</option><option>7:30 PM</option><option>8:00 PM</option><option>8:30 PM</option><option>9:00 PM</option>
+              </select>
+            </div>
+          </div>
+          <div style="margin-bottom:16px">
+            <label style="display:block;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(247,242,233,.6);margin-bottom:8px">Date</label>
+            <input type="date" value="{{ formDate }}" onChange="{{ onDate }}" style="width:100%;background:#1c1411;border:1px solid rgba(247,242,233,.18);color:#f7f2e9;padding:13px;border-radius:2px;font-size:14px;color-scheme:dark">
+          </div>
+          <div style="margin-bottom:16px">
+            <label style="display:block;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(247,242,233,.6);margin-bottom:8px">Name</label>
+            <input type="text" placeholder="Your name" value="{{ formName }}" onChange="{{ onName }}" style="width:100%;background:#1c1411;border:1px solid rgba(247,242,233,.18);color:#f7f2e9;padding:13px;border-radius:2px;font-size:14px">
+          </div>
+          <div style="margin-bottom:26px">
+            <label style="display:block;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(247,242,233,.6);margin-bottom:8px">Phone</label>
+            <input type="tel" placeholder="(709) 000-0000" value="{{ formPhone }}" onChange="{{ onPhone }}" style="width:100%;background:#1c1411;border:1px solid rgba(247,242,233,.18);color:#f7f2e9;padding:13px;border-radius:2px;font-size:14px">
+          </div>
+          <button onClick="{{ submitForm }}" style="width:100%;background:#e3a52b;border:none;color:#1c1411;padding:17px;border-radius:2px;font-size:13px;letter-spacing:2px;text-transform:uppercase;font-weight:600;cursor:pointer" style-hover="background:#f0b53a">Request Reservation</button>
+          <p style="text-align:center;font-size:12px;color:rgba(247,242,233,.45);margin:16px 0 0;font-weight:300">For parties of 8 or more, please call us directly.</p>
+        </div>
+      </sc-if>
+    </div>
+  </section>
+
+  <!-- ORDER ONLINE CTA -->
+  <section style="background:#e3a52b;color:#1c1411;padding:80px 7vw;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:32px">
+    <div>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(34px,4.4vw,56px);line-height:1;margin:0 0 10px">Craving it at home?</h2>
+      <p style="font-size:17px;margin:0;font-weight:300;color:#3a2a12">Takeout and full-service catering available — call (709) 753-6006 to order.</p>
+    </div>
+    <a href="tel:+17097536006" style="text-decoration:none;background:#1c1411;color:#f7f2e9;padding:18px 40px;border-radius:2px;font-size:13px;letter-spacing:2px;text-transform:uppercase;font-weight:500;white-space:nowrap" style-hover="background:#2a1a13">Call to Order →</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background:#120c0a;color:rgba(247,242,233,.7);padding:70px 7vw 40px">
+    <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;flex-wrap:wrap;margin-bottom:48px">
+      <div>
+        <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:30px;letter-spacing:3px;color:#f7f2e9">INDIA GATE</div>
+        <div style="font-size:10px;letter-spacing:4px;color:#e3a52b;margin:6px 0 20px">ST. JOHN'S · NEWFOUNDLAND</div>
+        <p style="font-size:14px;line-height:1.7;max-width:340px;font-weight:300;margin:0">Authentic North Indian cuisine on Duckworth Street — family-owned and serving St. John's for over 25 years. Dine-in, takeout & catering.</p>
+      </div>
+      <div>
+        <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#f7f2e9;margin-bottom:16px">Explore</div>
+        <div style="display:flex;flex-direction:column;gap:11px;font-size:14px;font-weight:300">
+          <a href="#menu" style="color:inherit;text-decoration:none" style-hover="color:#e3a52b">Menu</a>
+          <a href="#about" style="color:inherit;text-decoration:none" style-hover="color:#e3a52b">Our Story</a>
+          <a href="#gallery" style="color:inherit;text-decoration:none" style-hover="color:#e3a52b">Gallery</a>
+          <a href="#reserve" style="color:inherit;text-decoration:none" style-hover="color:#e3a52b">Reservations</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#f7f2e9;margin-bottom:16px">Connect</div>
+        <div style="display:flex;flex-direction:column;gap:11px;font-size:14px;font-weight:300">
+          <span>(709) 753-6006</span>
+          <a href="https://indiagatenl.ca" style="color:inherit;text-decoration:none" style-hover="color:#e3a52b">indiagatenl.ca</a>
+          <a href="https://facebook.com/indiagatenl" style="color:inherit;text-decoration:none" style-hover="color:#e3a52b">Facebook</a>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(247,242,233,.1);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:12px;color:rgba(247,242,233,.45);font-weight:300">
+      <span>© 2026 India Gate Restaurant. All rights reserved.</span>
+      <span>Made with care in St. John's, NL</span>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1024},&quot;heroVariant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;overlay&quot;,&quot;split&quot;,&quot;dramatic&quot;],&quot;default&quot;:&quot;split&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;showReviews&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Sections&quot;}}">
+class Component extends DCLogic {
+  state = {
+    scrolled: false,
+    submitted: false,
+    form: { party: '2 guests', time: '7:00 PM', date: '', name: '', phone: '' },
+  };
+
+  componentDidMount() {
+    this._onScroll = () => {
+      const s = window.scrollY > 60;
+      if (s !== this.state.scrolled) this.setState({ scrolled: s });
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+  }
+  componentWillUnmount() {
+    if (this._onScroll) window.removeEventListener('scroll', this._onScroll);
+  }
+
+  setField(k, v) { this.setState(s => ({ form: { ...s.form, [k]: v } })); }
+
+  renderVals() {
+    const variant = this.props.heroVariant ?? 'split';
+    const scrolled = this.state.scrolled;
+    const f = this.state.form;
+
+    const navStyle = {
+      position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50,
+      display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+      padding: scrolled ? '14px 7vw' : '26px 7vw',
+      background: scrolled ? 'rgba(247,242,233,0.96)' : 'transparent',
+      color: scrolled ? '#2a211c' : '#f7f2e9',
+      borderBottom: scrolled ? '1px solid rgba(0,0,0,0.07)' : '1px solid transparent',
+      boxShadow: scrolled ? '0 6px 30px rgba(0,0,0,0.08)' : 'none',
+      backdropFilter: scrolled ? 'blur(12px)' : 'none',
+      WebkitBackdropFilter: scrolled ? 'blur(12px)' : 'none',
+      transition: 'all .38s cubic-bezier(.4,0,.2,1)',
+    };
+
+    const u = (id, w) => 'https://images.unsplash.com/photo-' + id + '?w=' + w + '&q=80&auto=format&fit=crop';
+    const galleryBase = 'position:relative;overflow:hidden;border-radius:4px;background:#241712';
+    const gallery = [
+      { label: 'Fine dining room', img: u('1414235077428-338989a2e8c0', 1000), span: 'grid-column:span 2;grid-row:span 2' },
+      { label: 'Vegetable samosas', img: u('1601050690597-df0568f70950', 600), span: '' },
+      { label: 'Plated curry', img: u('1610192244261-3f33de3f55e4', 600), span: '' },
+      { label: 'Prawn curry', img: u('1559847844-5315695dadae', 600), span: '' },
+      { label: 'Simmering curry', img: u('1596797038530-2c107229654b', 600), span: '' },
+      { label: 'The dining room', img: u('1517248135467-4c7edcad34c4', 1000), span: 'grid-column:span 2' },
+    ].map(g => ({ label: g.label, img: g.img, style: galleryBase + ';' + g.span }));
+
+    return {
+      navStyle,
+      heroOverlay: variant === 'overlay',
+      heroSplit: variant === 'split',
+      heroDramatic: variant === 'dramatic',
+      showReviews: this.props.showReviews ?? true,
+
+      submitted: this.state.submitted,
+      notSubmitted: !this.state.submitted,
+      formName: f.name || 'guest',
+      formParty: f.party, formTime: f.time, formDate: f.date, formPhone: f.phone,
+      onParty: (e) => this.setField('party', e.target.value),
+      onTime: (e) => this.setField('time', e.target.value),
+      onDate: (e) => this.setField('date', e.target.value),
+      onName: (e) => this.setField('name', e.target.value),
+      onPhone: (e) => this.setField('phone', e.target.value),
+      submitForm: () => this.setState({ submitted: true }),
+      resetForm: () => this.setState({ submitted: false }),
+
+      signatureDishes: [
+        { name: 'Butter Chicken', tag: 'Most Loved', price: '$24', img: u('1588166524941-3bf61a9c41db', 800), desc: 'Tender tandoori chicken in a rich, mildly spiced tomato-and-butter gravy — our signature for 25 years.' },
+        { name: 'Lamb Curry', tag: "House Classic", price: '$26', img: u('1565557623262-b51c2513a641', 800), desc: 'Slow-cooked lamb in a fragrant North Indian curry of ginger, garlic and warming spices.' },
+        { name: 'Tandoori Chicken', tag: 'From the Tandoor', price: '$22', img: u('1599487488170-d11ec9c172f0', 800), desc: 'Chicken marinated overnight in yoghurt and spices, char-grilled in our clay tandoor.' },
+        { name: 'Aloo Gobi', tag: 'Vegan', price: '$17', img: u('1567188040759-fb8a883dc6d8', 800), desc: 'Potato and cauliflower simmered with cumin, turmeric and tomato — vegan and gluten-free.' },
+      ],
+      menuGroups: [
+        { title: 'To Begin', items: [
+          { name: 'Vegetable Samosas', price: '$8', desc: 'Crisp pastry filled with spiced potato and peas.' },
+          { name: 'Onion Bhaji', price: '$8', desc: 'Sliced onion fritters in seasoned gram-flour batter.' },
+          { name: 'Vegetable Pakora', price: '$9', desc: 'Mixed vegetables fried in spiced batter, with chutney.' },
+          { name: 'Papadam', price: '$3', desc: 'Crisp lentil wafers served with chutneys.' },
+        ]},
+        { title: 'From the Tandoor', items: [
+          { name: 'Tandoori Chicken', price: '$22', desc: 'Half chicken in an overnight yoghurt-spice marinade.' },
+          { name: 'Chicken Tikka', price: '$21', desc: 'Boneless chicken char-grilled in the clay oven.' },
+          { name: 'Mixed Grill', price: '$26', desc: 'An assortment from the tandoor, for sharing.' },
+        ]},
+        { title: 'Curries & Mains', items: [
+          { name: 'Butter Chicken', price: '$24', desc: 'Our most-loved creamy tomato-butter curry.' },
+          { name: 'Lamb Curry', price: '$26', desc: 'Slow-cooked lamb, fragrant North Indian spices.' },
+          { name: 'Aloo Gobi', price: '$17', desc: 'Potato and cauliflower, cumin and turmeric.' },
+          { name: 'Dal', price: '$16', desc: 'Lentils simmered with garlic and spices.' },
+        ]},
+        { title: 'Breads & Rice', items: [
+          { name: 'Plain Naan', price: '$4', desc: 'Pulled fresh from the tandoor.' },
+          { name: 'Garlic Naan', price: '$5', desc: 'Brushed with garlic and butter.' },
+          { name: 'Cheese & Onion Kulcha', price: '$6', desc: 'Stuffed leavened bread, baked to order.' },
+          { name: 'Rice Pilau', price: '$6', desc: 'Basmati rice gently spiced and fragrant.' },
+        ]},
+      ],
+      gallery,
+      reviews: [
+        { quote: 'The finest Indian meal we have had in Atlantic Canada — every dish was a quiet revelation.', name: 'Margaret D.', meta: 'St. John\u2019s · via Google' },
+        { quote: 'Service that makes you feel like family, and a butter chicken I still dream about.', name: 'Aiden R.', meta: 'Mount Pearl · via Yelp' },
+        { quote: 'A genuinely special-occasion room. The tandoori prawns alone are worth the trip downtown.', name: 'Priya & Tom', meta: 'St. John\u2019s · via TripAdvisor' },
+      ],
+      hours: [
+        { day: 'Lunch Buffet · Wed – Fri', time: '11:30 AM – 1:30 PM' },
+        { day: 'Dinner · Tue – Sun', time: '5:00 – 9:30 PM' },
+        { day: 'Monday', time: 'Closed' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

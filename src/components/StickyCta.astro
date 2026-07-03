@@ -1,0 +1,34 @@
+---
+import { site } from '../data/site';
+
+interface Props {
+  reserveHref?: string;
+}
+const { reserveHref = '/contact#reserve' } = Astro.props;
+
+const itemClass =
+  'flex flex-col items-center justify-center gap-1 py-2.5 text-[10px] font-medium tracking-[1px] uppercase text-cream no-underline';
+---
+
+<!-- Mobile-only conversion bar: Call / Menu / Reserve / Directions -->
+<nav
+  aria-label="Quick actions"
+  class="fixed inset-x-0 bottom-0 z-40 grid grid-cols-4 border-t border-cream/10 bg-dark/95 pb-[env(safe-area-inset-bottom)] backdrop-blur-md md:hidden"
+>
+  <a href={site.phoneHref} class={itemClass} aria-label={`Call India Gate at ${site.phone}`}>
+    <span aria-hidden="true" class="text-base leading-none text-gold">✆</span>
+    Call
+  </a>
+  <a href="/menu" class={itemClass}>
+    <span aria-hidden="true" class="text-base leading-none text-gold">☰</span>
+    Menu
+  </a>
+  <a href={reserveHref} class={itemClass}>
+    <span aria-hidden="true" class="text-base leading-none text-gold">✦</span>
+    Reserve
+  </a>
+  <a href={site.directionsHref} target="_blank" rel="noopener" class={itemClass}>
+    <span aria-hidden="true" class="text-base leading-none text-gold">➤</span>
+    Directions
+  </a>
+</nav>

@@ -1,0 +1,117 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { site, hours } from '../data/site';
+
+const steps = [
+  {
+    title: 'Browse the menu',
+    text: 'Everything on our dine-in menu is available to go — butter chicken, tandoori, biryani-style rice dishes, vegetarian curries and fresh naan.',
+  },
+  {
+    title: 'Call to order',
+    text: `Phone ${site.phone} and we'll have your order ready — most takeout orders are prepared within 20–30 minutes.`,
+  },
+  {
+    title: 'Pick up downtown',
+    text: "Collect at 286 Duckworth Street in downtown St. John's. Metered street parking is available right outside.",
+  },
+];
+---
+
+<BaseLayout
+  title="Indian Takeout & Delivery in St. John's | India Gate"
+  description="Order authentic Indian takeout in St. John's — butter chicken, tandoori, curries, vegetarian dishes and naan, made fresh at India Gate on Duckworth Street. Call (709) 753-6006 to order."
+  breadcrumbs={[
+    { name: 'Home', path: '/' },
+    { name: 'Takeout & Delivery', path: '/takeout-delivery/' },
+  ]}
+>
+  <Nav />
+  <main id="main" class="bg-cream text-ink">
+    <section class="px-[7vw] pt-44 pb-20">
+      <nav aria-label="Breadcrumb" class="mb-10 text-[12px] tracking-[1.5px] uppercase text-ink/50">
+        <a href="/" class="text-inherit no-underline transition-colors hover:text-brick">Home</a>
+        <span aria-hidden="true" class="mx-2 text-gold-dark">·</span>
+        <span aria-current="page" class="text-ink/80">Takeout &amp; Delivery</span>
+      </nav>
+      <p class="m-0 mb-4 text-[11px] font-medium tracking-[4px] uppercase text-brick">India Gate at Home</p>
+      <h1 class="m-0 mb-6 font-serif text-[clamp(40px,6vw,76px)] leading-none font-medium">
+        Indian Takeout &amp; Delivery<br />in St. John's
+      </h1>
+      <p class="m-0 max-w-[600px] text-[17px] leading-[1.85] font-light text-body-text">
+        Craving authentic Indian food at home? Our full menu is available for takeout, made fresh to
+        order the same way we've done it for over 25 years. We also offer full-service catering for
+        events across the St. John's area.
+      </p>
+      <div class="mt-10 flex flex-wrap gap-4">
+        <a
+          href={site.phoneHref}
+          class="rounded-[2px] bg-gold px-[34px] py-4 text-[13px] font-medium tracking-[2px] uppercase text-dark no-underline transition-colors hover:bg-gold-hover"
+        >
+          Call {site.phone}
+        </a>
+        <a
+          href="/menu"
+          class="rounded-[2px] border border-ink/25 px-[34px] py-4 text-[13px] font-normal tracking-[2px] uppercase text-ink no-underline transition-colors hover:bg-ink/5"
+        >
+          View the Menu
+        </a>
+      </div>
+    </section>
+
+    <section aria-labelledby="how-heading" class="bg-cream-deep px-[7vw] py-24">
+      <h2 id="how-heading" class="m-0 mb-12 font-serif text-[clamp(30px,4vw,48px)] leading-none font-medium">
+        How it works
+      </h2>
+      <div class="grid grid-cols-3 gap-12 max-lg:grid-cols-1">
+        {
+          steps.map((step, i) => (
+            <div>
+              <div class="mb-4 font-serif text-[40px] leading-none font-semibold text-gold-dark">0{i + 1}</div>
+              <h3 class="m-0 mb-3 font-serif text-2xl font-semibold">{step.title}</h3>
+              <p class="m-0 text-base leading-[1.8] font-light text-body-text">{step.text}</p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section aria-labelledby="hours-heading" class="px-[7vw] py-24">
+      <div class="grid grid-cols-2 gap-16 max-lg:grid-cols-1">
+        <div>
+          <h2 id="hours-heading" class="m-0 mb-8 font-serif text-[clamp(30px,4vw,48px)] leading-none font-medium">
+            Takeout hours
+          </h2>
+          <div class="flex flex-col gap-3">
+            {
+              hours.map((h) => (
+                <div class="flex max-w-[380px] justify-between border-b border-ink/10 pb-3 text-base font-light">
+                  <span>{h.day}</span>
+                  <span class="text-body-text">{h.time}</span>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+        <div>
+          <h2 class="m-0 mb-8 font-serif text-[clamp(30px,4vw,48px)] leading-none font-medium">
+            Catering
+          </h2>
+          <p class="m-0 mb-6 max-w-[480px] text-base leading-[1.85] font-light text-body-text">
+            From office lunches to weddings, we cater events of every size with the same authentic
+            North Indian cooking served in our dining room. Call us to plan a menu for your event.
+          </p>
+          <a
+            href="/contact"
+            class="inline-block text-[12px] font-medium tracking-[2px] uppercase text-brick no-underline transition-colors hover:text-gold-dark"
+          >
+            Contact us about catering →
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

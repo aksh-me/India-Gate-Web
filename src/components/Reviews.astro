@@ -1,0 +1,19 @@
+---
+import { reviews } from '../data/site';
+---
+
+<section class="bg-brick px-[7vw] py-36 text-center text-cream">
+  <div data-reveal class="mb-12 text-[11px] font-medium tracking-[4px] uppercase text-gold-pale">Guests Are Saying</div>
+  <div data-reveal-group class="mx-auto grid max-w-[1200px] grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-12">
+    {
+      reviews.map((r) => (
+        <div>
+          <div class="mb-[18px] text-lg tracking-[3px] text-gold-pale">★★★★★</div>
+          <p class="m-0 mb-[22px] font-serif text-[22px] leading-[1.5] font-normal italic">"{r.quote}"</p>
+          <div class="text-[13px] font-medium tracking-[1.5px] uppercase">{r.name}</div>
+          <div class="mt-1 text-[12px] text-cream/70">{r.meta}</div>
+        </div>
+      ))
+    }
+  </div>
+</section>

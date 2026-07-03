@@ -1,0 +1,50 @@
+---
+import { site } from '../data/site';
+
+const explore = [
+  { href: '/menu', label: 'Menu' },
+  { href: '/#about', label: 'Our Story' },
+  { href: '/takeout-delivery', label: 'Takeout & Delivery' },
+  { href: '/contact', label: 'Contact & Directions' },
+  { href: '/contact#reserve', label: 'Reservations' },
+];
+
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-deep px-[7vw] pt-[70px] pb-10 text-cream/70">
+  <div class="mb-12 grid grid-cols-[2fr_1fr_1fr] gap-12 max-lg:grid-cols-2 max-sm:grid-cols-1">
+    <div>
+      <div class="font-serif text-[30px] font-semibold tracking-[3px] text-cream">{site.name.toUpperCase()}</div>
+      <div class="mt-1.5 mb-5 text-[10px] tracking-[4px] text-gold">{site.location}</div>
+      <p class="m-0 max-w-[340px] text-sm leading-[1.7] font-light">
+        Authentic Indian restaurant on Duckworth Street — family-owned and serving St. John's,
+        Newfoundland for over 25 years. Dine-in, Indian takeout &amp; catering.
+      </p>
+    </div>
+    <div>
+      <div class="mb-4 text-[11px] tracking-[2px] uppercase text-cream">Explore</div>
+      <div class="flex flex-col gap-[11px] text-sm font-light">
+        {
+          explore.map((link) => (
+            <a href={link.href} class="text-inherit no-underline transition-colors hover:text-gold">
+              {link.label}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+    <div>
+      <div class="mb-4 text-[11px] tracking-[2px] uppercase text-cream">Connect</div>
+      <div class="flex flex-col gap-[11px] text-sm font-light">
+        <span>{site.phone}</span>
+        <a href={site.websiteHref} class="text-inherit no-underline transition-colors hover:text-gold">{site.website}</a>
+        <a href={site.facebookHref} class="text-inherit no-underline transition-colors hover:text-gold">Facebook</a>
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-wrap justify-between gap-3 border-t border-cream/10 pt-6 text-[12px] font-light text-cream/45">
+    <span>© {year} India Gate Restaurant. All rights reserved.</span>
+    <span>Made with care in St. John's, NL</span>
+  </div>
+</footer>

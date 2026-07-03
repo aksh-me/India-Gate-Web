@@ -1,0 +1,70 @@
+---
+import { site, faqs, openingHoursSpecification, heroImage } from '../data/site';
+import { getImage } from 'astro:assets';
+
+interface Props {
+  breadcrumbs?: { name: string; path: string }[];
+  includeFaq?: boolean;
+}
+
+const { breadcrumbs = [], includeFaq = false } = Astro.props;
+const base = Astro.site?.href.replace(/\/$/, '') ?? site.domain;
+const heroSrc = await getImage({ src: heroImage, width: 1200 });
+
+// One Restaurant node covers LocalBusiness + Organization (Restaurant is a
+// subtype of both). No AggregateRating/Review markup until real reviews exist.
+const graph: object[] = [
+  {
+    '@type': 'Restaurant',
+    '@id': `${base}/#restaurant`,
+    name: site.name,
+    url: `${base}/`,
+    telephone: site.phoneHref.replace('tel:', ''),
+    priceRange: site.priceRange,
+    servesCuisine: site.cuisine,
+    image: [`${base}${heroSrc.src}`, `${base}/og-image.png`],
+    logo: `${base}/apple-touch-icon.png`,
+    address: { '@type': 'PostalAddress', ...site.schemaAddress },
+    geo: { '@type': 'GeoCoordinates', ...site.geo },
+    hasMap: site.directionsHref,
+    openingHoursSpecification,
+    menu: `${base}/menu/`,
+    acceptsReservations: `${base}/contact/#reserve`,
+    sameAs: [site.facebookHref],
+  },
+  {
+    '@type': 'WebSite',
+    '@id': `${base}/#website`,
+    name: site.name,
+    url: `${base}/`,
+    publisher: { '@id': `${base}/#restaurant` },
+  },
+];
+
+if (breadcrumbs.length) {
+  graph.push({
+    '@type': 'BreadcrumbList',
+    itemListElement: breadcrumbs.map((crumb, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: crumb.name,
+      item: `${base}${crumb.path}`,
+    })),
+  });
+}
+
+if (includeFaq) {
+  graph.push({
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  });
+}
+
+const jsonLd = { '@context': 'https://schema.org', '@graph': graph };
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

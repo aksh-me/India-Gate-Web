@@ -1,0 +1,27 @@
+---
+const items = [
+  'Butter Chicken',
+  'Live-Fire Tandoor',
+  'Garlic Naan',
+  'Lamb Curry',
+  'Slow-Cooked Curries',
+  'Vegan & GF Options',
+];
+---
+
+<section aria-hidden="true" class="overflow-hidden border-b border-cream/10 bg-dark py-6">
+  <div id="marquee-track" class="flex w-max items-center gap-10">
+    {
+      [0, 1].map(() => (
+        <div class="flex items-center gap-10 whitespace-nowrap">
+          {items.map((item) => (
+            <>
+              <span class="font-serif text-3xl italic text-cream/90">{item}</span>
+              <span class="text-lg text-gold">✦</span>
+            </>
+          ))}
+        </div>
+      ))
+    }
+  </div>
+</section>
