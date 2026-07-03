@@ -21,7 +21,7 @@ export const aboutImage = imgKitchen;
 // from this one object.
 export const site = {
   name: 'India Gate',
-  domain: 'https://indiagatenl.ca', // PLACEHOLDER — must match the production domain
+  domain: 'https://india-gate-web.vercel.app', // update when a custom domain is attached
   location: "ST. JOHN'S · NEWFOUNDLAND",
   phone: '(709) 753-6006',
   phoneHref: 'tel:+17097536006',

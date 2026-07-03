@@ -3,3 +3,6 @@ dist/
 .astro/
 *.zip
 .claude/settings.local.json
+
+.vercel
+.env*
